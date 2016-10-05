@@ -1,20 +1,24 @@
-This extractor was extended from the ncsa.image.preview extractor. It provides an image preview
-for files, including the .dm3 digital micrograph files. 
+extractor-base
+=====
 
-In order to run this extractor, do the following:
+This repository provides a base implementation of extractor that can be run on 4CeeD system.
 
-1. Install pyclowder using : 
+## Build extractor
 
-pip install git+https://opensource.ncsa.illinois.edu/stash/scm/cats/pyclowder.git
+Build extractor Docker image:
 
-2. Install imagemagickconvert and make sure that the correct path is listed in imageBinary in the config files.
+```
+docker build -t t2c2/sample-extractor .
+```
 
-3. The extractor script t2c2.image.preview.py requires no arguments. All necessary values are in the config file. 
+## Deploy extractor
 
-4. To run - make sure rabbitmq (or other event bus) is running as well as clowder. Run extractor from command line 
-using 'sudo python t2c2.image.preview.py' . 
+To deploy the extractor on the Kubernetes instance that hosts 4CeeD system, run the following command: 
 
+```
+kubectl create -f extractor-rc.yaml
+```
 
-POST api/extractors
+## Implement your own extractor
 
-{"name":"t2c2.image.preview","version":"1.0","updated":"2016-01-01","description":"image preview for tiff files","author":"","contributors":[],"contexts":[],"repository":{"repType":"git","repUrl":""},"external_services":[],"libraries":[],"bibtex":[]}
+TBD
